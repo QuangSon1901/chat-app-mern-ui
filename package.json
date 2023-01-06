@@ -52,5 +52,6 @@
     },
     "devDependencies": {
         "babel-plugin-module-resolver": "^4.1.0"
-    }
+    },
+    "proxy": "http://locahost:5000"
 }
