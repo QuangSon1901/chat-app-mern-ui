@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { userRegister } from '~/store/actions/authAction';
+import { useAlert } from 'react-alert';
+import { ERROR_MESSAGE_CLEAR, SUCCESS_MESSAGE_CLEAR } from '~/store/types/authType';
 
 const Register = () => {
+    const alert = useAlert();
+
+    const { successMessage, error, authenticate } = useSelector((state) => state.auth);
+
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [state, setState] = useState({
         userName: '',
@@ -27,19 +34,19 @@ const Register = () => {
         if (e.target.files.length !== 0) {
             setState({
                 ...state,
-                [e.target.name]: [e.target.value],
+                [e.target.name]: e.target.files[0],
             });
-
-            const reader = new FileReader();
-            reader.onload = () => {
-                setLoadImage(reader.result);
-            };
-            reader.readAsDataURL(e.target.files[0]);
         }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            setLoadImage(reader.result);
+        };
+        reader.readAsDataURL(e.target.files[0]);
     };
 
     const register = (e) => {
-        const [userName, email, password, confirmPassword, image] = state;
+        const { userName, email, password, confirmPassword, image } = state;
         e.preventDefault();
 
         const formData = new FormData();
@@ -51,6 +58,20 @@ const Register = () => {
 
         dispatch(userRegister(formData));
     };
+
+    useEffect(() => {
+        if (authenticate) navigate('/');
+
+        if (successMessage) {
+            alert.success(successMessage);
+            dispatch({ type: SUCCESS_MESSAGE_CLEAR });
+        }
+
+        if (error) {
+            error.map((err) => alert.error(err));
+            dispatch({ type: ERROR_MESSAGE_CLEAR });
+        }
+    }, [successMessage, error]);
 
     return (
         <div className="register">

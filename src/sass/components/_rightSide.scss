@@ -1,0 +1,86 @@
+.col-9 {
+    .right-side {
+        height: 100%;
+        .row {
+            height: 100%;
+            .col-8 {
+                transition: all 0.5s ease;
+                .message-send-show {
+                    height: 100vh;
+                    border-right: 1px solid #213156bf;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    .header {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 12px 10px;
+                        border-bottom: 1px solid #213156bf;
+                        .image-name {
+                            display: flex;
+                            .image {
+                                position: relative;
+                                width: 40px;
+                                height: 40px;
+                                img {
+                                    width: 40px;
+                                    height: 40px;
+                                    border-radius: 50%;
+                                }
+                                .active-icon {
+                                    position: absolute;
+                                    width: 10px;
+                                    height: 10px;
+                                    border-radius: 50%;
+                                    background-color: rgb(0, 157, 0);
+                                    right: 0;
+                                    bottom: 0;
+                                }
+                            }
+                            .name {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                h3 {
+                                    padding-left: 10px;
+                                    color: #fff;
+                                }
+                            }
+                        }
+                        .icons {
+                            display: flex;
+                            .icon {
+                                height: 35px;
+                                width: 35px;
+                                padding: 8px;
+                                margin-left: 8px;
+                                color: #fff;
+                                cursor: pointer;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                        }
+                    }
+                }
+            }
+            .col-4 {
+            }
+        }
+    }
+    #dot {
+        display: none;
+    }
+    #dot:checked ~ .row .col-4 {
+        display: none;
+    }
+    #dot:checked ~ .row .col-8 {
+        width: 100%;
+    }
+    #dot:checked ~ .row .col-8 .message-show .my-message .my-text,
+    #dot:checked ~ .row .col-8 .message-show .fd-message .fd-text {
+        width: 700px;
+    }
+}
