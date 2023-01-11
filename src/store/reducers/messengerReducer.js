@@ -1,3 +1,4 @@
+import { LOGOUT_SUCCESS } from '../types/authType';
 import {
     DELIVARED_MESSAGE,
     FRIENDS_GET_SUCCESS,
@@ -6,6 +7,8 @@ import {
     MESSAGE_GET_SUCCESS_CLEAR,
     MESSAGE_SEND_SUCCESS,
     MESSAGE_SEND_SUCCESS_CLEAR,
+    NEW_USER_ADD,
+    NEW_USER_ADD_CLEAR,
     SEEN_ALL,
     SEEN_MESSAGE,
     SOCKET_MESSAGE,
@@ -18,6 +21,7 @@ const messengerState = {
     message: [],
     messageSendSuccess: false,
     message_get_success: false,
+    new_user_add: '',
 };
 
 export const messengerReducer = (state = messengerState, action) => {
@@ -97,6 +101,24 @@ export const messengerReducer = (state = messengerState, action) => {
             state.friends[index_sa].msgInfo.status = 'seen';
             return {
                 ...state,
+            };
+        case LOGOUT_SUCCESS:
+            return {
+                ...state,
+                friends: [],
+                message: [],
+                messageSendSuccess: false,
+                message_get_success: false,
+            };
+        case NEW_USER_ADD:
+            return {
+                ...state,
+                new_user_add: payload.new_user_add,
+            };
+        case NEW_USER_ADD_CLEAR:
+            return {
+                ...state,
+                new_user_add: '',
             };
         default:
             return state;

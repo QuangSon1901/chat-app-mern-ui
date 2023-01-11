@@ -1,7 +1,7 @@
 import React from 'react';
 import { HiOutlineChevronDown } from 'react-icons/hi';
 
-const FriendInfo = ({ currentFriend, activeUser }) => {
+const FriendInfo = ({ message, currentFriend, activeUser }) => {
     return (
         <div className="friend-info">
             <input type="checkbox" id="gallery" />
@@ -36,15 +36,18 @@ const FriendInfo = ({ currentFriend, activeUser }) => {
                 </label>
             </div>
             <div className="gallery">
-                <img src="/mypicture.jpg" alt="" />
-                <img src="/mypicture.jpg" alt="" />
-                <img src="/mypicture.jpg" alt="" />
-                <img src="/mypicture.jpg" alt="" />
-                <img src="/mypicture.jpg" alt="" />
-                <img src="/mypicture.jpg" alt="" />
-                <img src="/mypicture.jpg" alt="" />
-                <img src="/mypicture.jpg" alt="" />
-                <img src="/mypicture.jpg" alt="" />
+                {message && message.length > 0
+                    ? message.map(
+                          (m, index) =>
+                              m.message.image && (
+                                  <img
+                                      key={index}
+                                      src={`http://localhost:5000/public/uploads/${m.message.image}`}
+                                      alt=""
+                                  />
+                              ),
+                      )
+                    : ''}
             </div>
         </div>
     );

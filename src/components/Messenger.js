@@ -21,6 +21,8 @@ import {
     DELIVARED_MESSAGE,
     MESSAGE_GET_SUCCESS_CLEAR,
     MESSAGE_SEND_SUCCESS_CLEAR,
+    NEW_USER_ADD,
+    NEW_USER_ADD_CLEAR,
     SEEN_ALL,
     SEEN_MESSAGE,
     SOCKET_MESSAGE,
@@ -30,6 +32,8 @@ import {
 import useSound from 'use-sound';
 import notificationSound from '../audio/notification.mp3';
 import sendingSound from '../audio/sending.mp3';
+import { IoLogOutOutline } from 'react-icons/io5';
+import { userLogout } from '~/store/actions/authAction';
 
 const Messenger = () => {
     const dispatch = useDispatch();
@@ -39,7 +43,9 @@ const Messenger = () => {
     const scrollRed = useRef();
     const socket = useRef();
 
-    const { friends, message, messageSendSuccess, message_get_success } = useSelector((state) => state.messenger);
+    const { friends, message, new_user_add, messageSendSuccess, message_get_success } = useSelector(
+        (state) => state.messenger,
+    );
     const { myInfo } = useSelector((state) => state.auth);
 
     const [currentFriend, setCurrentFriend] = useState('');
@@ -88,6 +94,14 @@ const Messenger = () => {
         socket.current.on('getUser', (users) => {
             const filterUser = users.filter((u) => u.userId !== myInfo.id && u.userId !== null);
             setActiveUser(filterUser);
+        });
+        socket.current.on('new_user_add', (data) => {
+            dispatch({
+                type: NEW_USER_ADD,
+                payload: {
+                    new_user_add: data,
+                },
+            });
         });
     }, []);
 
@@ -200,7 +214,10 @@ const Messenger = () => {
 
     useEffect(() => {
         dispatch(getFriends());
-    }, []);
+        dispatch({
+            type: NEW_USER_ADD_CLEAR,
+        });
+    }, [new_user_add]);
 
     useEffect(() => {
         if (friends && friends.length > 0) {
@@ -241,6 +258,26 @@ const Messenger = () => {
         scrollRed.current?.scrollIntoView({ behavior: 'smooth' });
     }, [message]);
 
+    const [hide, setHide] = useState(true);
+
+    const logout = () => {
+        dispatch(userLogout());
+        socket.current.emit('logout', myInfo.id);
+    };
+
+    const search = (e) => {
+        const getFriendsClass = document.getElementsByClassName('hover-friend');
+        const friendNameClass = document.getElementsByClassName('fd_name');
+        for (let i = 0; i < getFriendsClass.length, i < friendNameClass.length; i++) {
+            let text = friendNameClass[i].innerText.toLowerCase();
+            if (text.indexOf(e.target.value.toLowerCase()) > -1) {
+                getFriendsClass[i].style.display = '';
+            } else {
+                getFriendsClass[i].style.display = 'none';
+            }
+        }
+    };
+
     return (
         <div className="messenger">
             <Toaster
@@ -265,11 +302,26 @@ const Messenger = () => {
                                 </div>
                             </div>
                             <div className="icons">
-                                <div className="icon">
+                                <div className="icon" onClick={() => setHide(!hide)}>
                                     <BsThreeDots />
                                 </div>
                                 <div className="icon">
                                     <FaEdit />
+                                </div>
+                                <div className={`theme-logout ${!hide ? 'show' : ''}`}>
+                                    <h1>Dark mode</h1>
+                                    <div className="on">
+                                        <label htmlFor="dark">ON</label>
+                                        <input value="dark" type="radio" id="dark" name="theme" />
+                                    </div>
+                                    <div className="of">
+                                        <label htmlFor="white">OFF</label>
+                                        <input value="white" type="radio" id="white" name="theme" />
+                                    </div>
+                                    <div className="logout" onClick={logout}>
+                                        <IoLogOutOutline />
+                                        Logout
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -278,7 +330,7 @@ const Messenger = () => {
                                 <button>
                                     <BiSearch />
                                 </button>
-                                <input type="text" placeholder="Search" className="form-control" />
+                                <input onChange={search} type="text" placeholder="Search" className="form-control" />
                             </div>
                         </div>
                         {/* <div className="active-friends">

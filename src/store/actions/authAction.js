@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LOGIN_FAIL, LOGIN_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../types/authType';
+import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../types/authType';
 
 export const userRegister = (data) => {
     return async (dispatch) => {
@@ -56,4 +56,20 @@ export const userLogin = (data) => {
             });
         }
     };
+};
+
+export const userLogout = () => async (dispatch) => {
+    const config = {
+        headers: {},
+        withCredentials: true,
+    };
+    try {
+        const res = await axios.post('http://localhost:5000/api/messenger/user-logout', {}, config);
+        if (res.data.success) {
+            localStorage.removeItem('authToken');
+            dispatch({
+                type: LOGOUT_SUCCESS,
+            });
+        }
+    } catch (error) {}
 };

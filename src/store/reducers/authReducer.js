@@ -2,6 +2,7 @@ import {
     ERROR_MESSAGE_CLEAR,
     LOGIN_FAIL,
     LOGIN_SUCCESS,
+    LOGOUT_SUCCESS,
     REGISTER_FAIL,
     REGISTER_SUCCESS,
     SUCCESS_MESSAGE_CLEAR,
@@ -71,6 +72,13 @@ export const authReducer = (state = authState, action) => {
             return {
                 ...state,
                 error: '',
+            };
+        case LOGOUT_SUCCESS:
+            return {
+                ...state,
+                authenticate: false,
+                myInfo: '',
+                successMessage: 'Logout successfully!',
             };
         default:
             return state;

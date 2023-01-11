@@ -22,9 +22,9 @@ const Friends = ({ friend, myId, activeUser }) => {
                         className={
                             friend.msgInfo?.senderId !== myId &&
                             friend.msgInfo?.status !== undefined &&
-                            friend.msgInfo?.status !== 'seen'
-                                ? 'unseen-message'
-                                : ''
+                            friend.msgInfo?.status !== 'seen fd_name'
+                                ? 'unseen-message fd_name'
+                                : 'fd_name'
                         }
                     >
                         {friend.fndInfo.userName}
