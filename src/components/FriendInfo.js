@@ -7,7 +7,7 @@ const FriendInfo = ({ message, currentFriend, activeUser }) => {
             <input type="checkbox" id="gallery" />
             <div className="image-name">
                 <div className="image">
-                    <img src={`http://localhost:5000/public/uploads/${currentFriend.image}`} alt="" />
+                    <img src={currentFriend.image} alt="" />
                 </div>
                 {activeUser && activeUser.length > 0 && activeUser.some((u) => u.userId === currentFriend._id) ? (
                     <div className="active-user">Active</div>
@@ -37,16 +37,7 @@ const FriendInfo = ({ message, currentFriend, activeUser }) => {
             </div>
             <div className="gallery">
                 {message && message.length > 0
-                    ? message.map(
-                          (m, index) =>
-                              m.message.image && (
-                                  <img
-                                      key={index}
-                                      src={`http://localhost:5000/public/uploads/${m.message.image}`}
-                                      alt=""
-                                  />
-                              ),
-                      )
+                    ? message.map((m, index) => m.message.image && <img key={index} src={m.message.image} alt="" />)
                     : ''}
             </div>
         </div>

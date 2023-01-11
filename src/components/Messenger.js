@@ -55,7 +55,7 @@ const Messenger = () => {
     const [typingMessage, setTypingMessage] = useState('');
 
     useEffect(() => {
-        socket.current = io('ws://localhost:8000');
+        socket.current = io('/');
         socket.current.on('getMessage', (data) => {
             setSocketMessage(data);
         });
@@ -184,12 +184,9 @@ const Messenger = () => {
     const imageSend = (e) => {
         if (e.target.files.length !== 0) {
             sendingSPlay();
-            const imageName = e.target.files[0].name;
-            const newImageName = Date.now() + imageName;
 
             const formData = new FormData();
             formData.append('senderName', myInfo.userName);
-            formData.append('imageName', newImageName);
             formData.append('receiveId', currentFriend._id);
             formData.append('image', e.target.files[0]);
 
@@ -295,7 +292,7 @@ const Messenger = () => {
                         <div className="top">
                             <div className="image-name">
                                 <div className="image">
-                                    <img src={`http://localhost:5000/public/uploads/${myInfo.image}`} alt="" />
+                                    <img src={myInfo.image} alt="" />
                                 </div>
                                 <div className="name">
                                     <h3>{myInfo.userName}</h3>

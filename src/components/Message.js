@@ -15,22 +15,11 @@ const Message = ({ scrollRed, message, myInfo, currentFriend, typingMessage }) =
                                     <div className="image-message">
                                         <div className="my-text">
                                             <p className="message-text">
-                                                {m.message.text ? (
-                                                    m.message.text
-                                                ) : (
-                                                    <img
-                                                        src={`http://localhost:5000/public/uploads/${m.message.image}`}
-                                                        alt=""
-                                                    />
-                                                )}
+                                                {m.message.text ? m.message.text : <img src={m.message.image} alt="" />}
                                             </p>
                                             {index === message.length - 1 && m.senderId === myInfo.id ? (
                                                 m.status === 'seen' ? (
-                                                    <img
-                                                        src={`http://localhost:5000/public/uploads/${currentFriend.image}`}
-                                                        alt=""
-                                                        className="img"
-                                                    />
+                                                    <img src={currentFriend.image} alt="" className="img" />
                                                 ) : m.status === 'delivared' ? (
                                                     <span>
                                                         <RiCheckboxCircleFill />
@@ -50,20 +39,14 @@ const Message = ({ scrollRed, message, myInfo, currentFriend, typingMessage }) =
                             ) : (
                                 <div ref={scrollRed} className="fd-message">
                                     <div className="image-message-time">
-                                        <img
-                                            src={`http://localhost:5000/public/uploads/${currentFriend.image}`}
-                                            alt=""
-                                        />
+                                        <img src={currentFriend.image} alt="" />
                                         <div className="message-time">
                                             <div className="fd-text">
                                                 <p className="message-text">
                                                     {m.message.text ? (
                                                         m.message.text
                                                     ) : (
-                                                        <img
-                                                            src={`http://localhost:5000/public/uploads/${m.message.image}`}
-                                                            alt=""
-                                                        />
+                                                        <img src={m.message.image} alt="" />
                                                     )}
                                                 </p>
                                             </div>
@@ -76,7 +59,7 @@ const Message = ({ scrollRed, message, myInfo, currentFriend, typingMessage }) =
                     ))
                 ) : (
                     <div className="friend-connect">
-                        <img src={`http://localhost:5000/public/uploads/${currentFriend.image}`} alt="" />
+                        <img src={currentFriend.image} alt="" />
                         <h3>{currentFriend.userName} connect you</h3>
                         <span>{moment(currentFriend.createdAt).startOf('mini').fromNow()}</span>
                     </div>
@@ -86,7 +69,7 @@ const Message = ({ scrollRed, message, myInfo, currentFriend, typingMessage }) =
                 <div className="typing-message">
                     <div ref={scrollRed} className="fd-message">
                         <div className="image-message-time">
-                            <img src={`http://localhost:5000/public/uploads/${currentFriend.image}`} alt="" />
+                            <img src={currentFriend.image} alt="" />
                             <div className="message-time">
                                 <div className="fd-text">
                                     <p className="message-text">Typing message....</p>

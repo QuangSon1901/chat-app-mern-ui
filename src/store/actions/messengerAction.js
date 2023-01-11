@@ -12,7 +12,7 @@ export const getFriends = () => async (dispatch) => {
         withCredentials: true,
     };
     try {
-        const res = await axios.get('http://localhost:5000/api/messenger/get-friends', config);
+        const res = await axios.get(process.env.REACT_APP_URL_API + '/messenger/get-friends', config);
 
         dispatch({
             type: FRIENDS_GET_SUCCESS,
@@ -31,7 +31,7 @@ export const messageSend = (data) => async (dispatch) => {
         withCredentials: true,
     };
     try {
-        const res = await axios.post('http://localhost:5000/api/messenger/send-message', data, config);
+        const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/send-message', data, config);
         dispatch({
             type: MESSAGE_SEND_SUCCESS,
             payload: {
@@ -49,7 +49,7 @@ export const getMessage = (id) => async (dispatch) => {
         withCredentials: true,
     };
     try {
-        const res = await axios.get(`http://localhost:5000/api/messenger/get-message/${id}`, config);
+        const res = await axios.get(`https://chatappserver.tinhocstar.site/api/messenger/get-message/${id}`, config);
 
         dispatch({
             type: MESSAGE_GET_SUCCESS,
@@ -68,7 +68,7 @@ export const imageMessageSend = (data) => async (dispatch) => {
         withCredentials: true,
     };
     try {
-        const res = await axios.post('http://localhost:5000/api/messenger/image-message-send', data, config);
+        const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/image-message-send', data, config);
         dispatch({
             type: IMAGE_MESSAGE_SEND,
             payload: {
@@ -86,7 +86,7 @@ export const seenMessage = (msg) => async (dispatch) => {
         withCredentials: true,
     };
     try {
-        const res = await axios.post('http://localhost:5000/api/messenger/seen-message', msg, config);
+        const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/seen-message', msg, config);
     } catch (error) {
         console.log(error.response.data);
     }
@@ -98,7 +98,7 @@ export const updateMessage = (msg) => async (dispatch) => {
         withCredentials: true,
     };
     try {
-        const res = await axios.post('http://localhost:5000/api/messenger/delivared-message', msg, config);
+        const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/delivared-message', msg, config);
     } catch (error) {
         console.log(error.response.data);
     }

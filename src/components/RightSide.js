@@ -29,10 +29,7 @@ const RightSide = ({
                             <div className="header">
                                 <div className="image-name">
                                     <div className="image">
-                                        <img
-                                            src={`http://localhost:5000/public/uploads/${currentFriend.image}`}
-                                            alt=""
-                                        />
+                                        <img src={currentFriend.image} alt="" />
                                         {activeUser &&
                                         activeUser.length > 0 &&
                                         activeUser.some((u) => u.userId === currentFriend._id) ? (

@@ -8,7 +8,7 @@ const Friends = ({ friend, myId, activeUser }) => {
         <div className="friend">
             <div className="friend-image">
                 <div className="image">
-                    <img src={`http://localhost:5000/public/uploads/${friend.fndInfo.image}`} alt="" />
+                    <img src={friend.fndInfo.image} alt="" />
                     {activeUser && activeUser.length > 0 && activeUser.some((u) => u.userId === friend.fndInfo._id) ? (
                         <div className="active-icon"></div>
                     ) : (
@@ -60,7 +60,7 @@ const Friends = ({ friend, myId, activeUser }) => {
                 {myId === friend.msgInfo?.senderId ? (
                     <div className="seen-unseen-icon">
                         {friend.msgInfo.status === 'seen' ? (
-                            <img src={`http://localhost:5000/public/uploads/${friend.fndInfo.image}`} alt="" />
+                            <img src={friend.fndInfo.image} alt="" />
                         ) : friend.msgInfo.status === 'delivared' ? (
                             <div className="delivared">
                                 <RiCheckboxCircleFill />

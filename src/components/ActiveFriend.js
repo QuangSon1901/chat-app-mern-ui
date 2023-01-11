@@ -17,7 +17,7 @@ const ActiveFriend = ({ activeUser, setCurrentFriend }) => {
                             })
                         }
                     >
-                        <img src={`http://localhost:5000/public/uploads/${u.userInfo.image}`} alt="" />
+                        <img src={u.userInfo.image} alt="" />
                         <div className="active-icon"></div>
                     </div>
                 ))}

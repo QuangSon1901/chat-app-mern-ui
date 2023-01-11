@@ -8,7 +8,7 @@ export const userRegister = (data) => {
             withCredentials: true,
         };
         try {
-            const res = await axios.post('http://localhost:5000/api/messenger/user-register', data, config);
+            const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/user-register', data, config);
 
             localStorage.setItem('authToken', JSON.stringify(res.data.token));
 
@@ -37,7 +37,7 @@ export const userLogin = (data) => {
             withCredentials: true,
         };
         try {
-            const res = await axios.post('http://localhost:5000/api/messenger/user-login', data, config);
+            const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/user-login', data, config);
             localStorage.setItem('authToken', JSON.stringify(res.data.token));
 
             dispatch({
@@ -64,7 +64,7 @@ export const userLogout = () => async (dispatch) => {
         withCredentials: true,
     };
     try {
-        const res = await axios.post('http://localhost:5000/api/messenger/user-logout', {}, config);
+        const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/user-logout', {}, config);
         if (res.data.success) {
             localStorage.removeItem('authToken');
             dispatch({
