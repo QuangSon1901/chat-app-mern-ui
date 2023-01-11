@@ -5,7 +5,6 @@ export const userRegister = (data) => {
     return async (dispatch) => {
         const config = {
             headers: {},
-            withCredentials: true,
         };
         try {
             const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/user-register', data, config);
@@ -34,7 +33,6 @@ export const userLogin = (data) => {
     return async (dispatch) => {
         const config = {
             headers: {},
-            withCredentials: true,
         };
         try {
             const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/user-login', data, config);
@@ -61,7 +59,6 @@ export const userLogin = (data) => {
 export const userLogout = () => async (dispatch) => {
     const config = {
         headers: {},
-        withCredentials: true,
     };
     try {
         const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/user-logout', {}, config);
