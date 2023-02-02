@@ -34,7 +34,7 @@ export const userLogin = (data) => {
     return async (dispatch) => {
         const config = {
             headers: {},
-            credentials: 'include',
+            withCredentials: true,
         };
         try {
             const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/user-login', data, config);
