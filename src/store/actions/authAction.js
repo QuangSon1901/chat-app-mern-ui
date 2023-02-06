@@ -4,8 +4,7 @@ import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCC
 export const userRegister = (data) => {
     return async (dispatch) => {
         const config = {
-            headers: {},
-            withCredentials: true,
+            headers: { withCredentials: true },
         };
         try {
             const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/user-register', data, config);
@@ -33,8 +32,7 @@ export const userRegister = (data) => {
 export const userLogin = (data) => {
     return async (dispatch) => {
         const config = {
-            headers: {},
-            withCredentials: true,
+            headers: { withCredentials: true },
         };
         try {
             const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/user-login', data, config);
