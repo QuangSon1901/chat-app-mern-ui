@@ -8,7 +8,9 @@ import {
 
 export const getFriends = () => async (dispatch) => {
     const config = {
-        headers: {},
+        headers: { withCredentials: true },
+        credentials: 'include',
+        withCredentials: true,
     };
     try {
         const res = await axios.get(process.env.REACT_APP_URL_API + '/messenger/get-friends', config);
@@ -26,7 +28,9 @@ export const getFriends = () => async (dispatch) => {
 
 export const messageSend = (data) => async (dispatch) => {
     const config = {
-        headers: {},
+        headers: { withCredentials: true },
+        credentials: 'include',
+        withCredentials: true,
     };
     try {
         const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/send-message', data, config);
@@ -43,7 +47,9 @@ export const messageSend = (data) => async (dispatch) => {
 
 export const getMessage = (id) => async (dispatch) => {
     const config = {
-        headers: {},
+        headers: { withCredentials: true },
+        credentials: 'include',
+        withCredentials: true,
     };
     try {
         const res = await axios.get(`https://chatappserver.tinhocstar.site/api/messenger/get-message/${id}`, config);
@@ -61,7 +67,9 @@ export const getMessage = (id) => async (dispatch) => {
 
 export const imageMessageSend = (data) => async (dispatch) => {
     const config = {
-        headers: {},
+        headers: { withCredentials: true },
+        credentials: 'include',
+        withCredentials: true,
     };
     try {
         const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/image-message-send', data, config);
@@ -78,7 +86,9 @@ export const imageMessageSend = (data) => async (dispatch) => {
 
 export const seenMessage = (msg) => async (dispatch) => {
     const config = {
-        headers: {},
+        headers: { withCredentials: true },
+        credentials: 'include',
+        withCredentials: true,
     };
     try {
         const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/seen-message', msg, config);
@@ -89,7 +99,9 @@ export const seenMessage = (msg) => async (dispatch) => {
 
 export const updateMessage = (msg) => async (dispatch) => {
     const config = {
-        headers: {},
+        headers: { withCredentials: true },
+        credentials: 'include',
+        withCredentials: true,
     };
     try {
         const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/delivared-message', msg, config);

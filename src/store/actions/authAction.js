@@ -62,7 +62,8 @@ export const userLogin = (data) => {
 
 export const userLogout = () => async (dispatch) => {
     const config = {
-        headers: {},
+        headers: { withCredentials: true },
+        credentials: 'include',
         withCredentials: true,
     };
     try {
