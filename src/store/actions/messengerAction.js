@@ -8,8 +8,6 @@ import {
 
 export const getFriends = () => async (dispatch) => {
     const config = {
-        headers: { withCredentials: true },
-        credentials: 'include',
         withCredentials: true,
     };
     try {
@@ -28,8 +26,6 @@ export const getFriends = () => async (dispatch) => {
 
 export const messageSend = (data) => async (dispatch) => {
     const config = {
-        headers: { withCredentials: true },
-        credentials: 'include',
         withCredentials: true,
     };
     try {
@@ -47,12 +43,10 @@ export const messageSend = (data) => async (dispatch) => {
 
 export const getMessage = (id) => async (dispatch) => {
     const config = {
-        headers: { withCredentials: true },
-        credentials: 'include',
         withCredentials: true,
     };
     try {
-        const res = await axios.get(`https://chatappserver.tinhocstar.site/api/messenger/get-message/${id}`, config);
+        const res = await axios.get(process.env.REACT_APP_URL_API + `/messenger/get-message/${id}`, config);
 
         dispatch({
             type: MESSAGE_GET_SUCCESS,
@@ -67,8 +61,6 @@ export const getMessage = (id) => async (dispatch) => {
 
 export const imageMessageSend = (data) => async (dispatch) => {
     const config = {
-        headers: { withCredentials: true },
-        credentials: 'include',
         withCredentials: true,
     };
     try {
@@ -86,8 +78,6 @@ export const imageMessageSend = (data) => async (dispatch) => {
 
 export const seenMessage = (msg) => async (dispatch) => {
     const config = {
-        headers: { withCredentials: true },
-        credentials: 'include',
         withCredentials: true,
     };
     try {
@@ -99,8 +89,6 @@ export const seenMessage = (msg) => async (dispatch) => {
 
 export const updateMessage = (msg) => async (dispatch) => {
     const config = {
-        headers: { withCredentials: true },
-        credentials: 'include',
         withCredentials: true,
     };
     try {

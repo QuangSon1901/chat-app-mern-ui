@@ -4,8 +4,6 @@ import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCC
 export const userRegister = (data) => {
     return async (dispatch) => {
         const config = {
-            headers: { withCredentials: true },
-            credentials: 'include',
             withCredentials: true,
         };
         try {
@@ -34,8 +32,6 @@ export const userRegister = (data) => {
 export const userLogin = (data) => {
     return async (dispatch) => {
         const config = {
-            headers: { withCredentials: true },
-            credentials: 'include',
             withCredentials: true,
         };
         try {
@@ -50,6 +46,7 @@ export const userLogin = (data) => {
                 },
             });
         } catch (error) {
+            console.log(error);
             dispatch({
                 type: LOGIN_FAIL,
                 payload: {
@@ -61,11 +58,7 @@ export const userLogin = (data) => {
 };
 
 export const userLogout = () => async (dispatch) => {
-    const config = {
-        headers: { withCredentials: true },
-        credentials: 'include',
-        withCredentials: true,
-    };
+    const config = {};
     try {
         const res = await axios.post(process.env.REACT_APP_URL_API + '/messenger/user-logout', {}, config);
         if (res.data.success) {
