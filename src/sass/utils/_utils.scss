@@ -39,3 +39,25 @@ label {
     border: none;
     cursor: pointer;
 }
+
+$mobile-width: 780px;
+$mobile-sm-width: 500px;
+$tablet-width: 1024px;
+
+@mixin mobile-small {
+    @media only screen and (max-width: $mobile-sm-width) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media only screen and (max-width: $mobile-width) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: $tablet-width) {
+        @content;
+    }
+}

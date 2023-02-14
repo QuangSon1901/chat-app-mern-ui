@@ -55,7 +55,7 @@ const Messenger = () => {
     const [typingMessage, setTypingMessage] = useState('');
 
     useEffect(() => {
-        socket.current = io('/');
+        socket.current = io('https://api.qsc-messenger.site/');
         socket.current.on('getMessage', (data) => {
             setSocketMessage(data);
         });
@@ -287,7 +287,7 @@ const Messenger = () => {
                 }}
             />
             <div className="row">
-                <div className="col-3">
+                <div className="col-3 left-side-col">
                     <div className="left-side">
                         <div className="top">
                             <div className="image-name">

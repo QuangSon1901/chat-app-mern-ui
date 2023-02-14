@@ -28,6 +28,13 @@
             align-items: flex-end;
             justify-content: flex-end;
             width: 400px;
+            @include tablet {
+                width: 370px;
+            }
+
+            @include mobile {
+                width: calc(100vw - 100px);
+            }
             flex-direction: column;
             img.img,
             span {
@@ -66,6 +73,13 @@
             align-items: flex-end;
             justify-content: flex-start;
             width: 400px;
+            @include tablet {
+                width: 370px;
+            }
+
+            @include mobile {
+                width: calc(100vw - 100px);
+            }
             .message-text {
                 text-align: start;
                 border-radius: 10px;

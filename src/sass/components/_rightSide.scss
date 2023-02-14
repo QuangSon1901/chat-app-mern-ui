@@ -1,8 +1,19 @@
-.col-9 {
+.col-9.right-side-col {
     .right-side {
         height: 100%;
+
         .row {
             height: 100%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            @include tablet {
+                grid-template-columns: 1fr;
+                & .col-4 {
+                    display: none;
+                }
+            }
+
             .col-8 {
                 transition: all 0.5s ease;
                 .message-send-show {

@@ -20,7 +20,7 @@ const RightSide = ({
     typingMessage,
 }) => {
     return (
-        <div className="col-9">
+        <div className="col-9 right-side-col">
             <div className="right-side">
                 <input type="checkbox" id="dot" />
                 <div className="row">
